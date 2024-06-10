@@ -1,0 +1,11 @@
+#!/bin/sh
+
+FILE="$HOME/pix/$(date +'%s_grim.png')"
+
+case "$(printf "%s\n" "a selected area" "full screen" | dmenu -p 'Screenshot: ')" in
+    "a selected area") grim -l 9 -g "$(slurp)" $FILE ;;
+    "full screen") sleep 0.5 && grim -l 9 $FILE ;;
+    *) exit 1 ;;
+esac
+
+test -e $FILE && notify-send "Screenshot saved as $FILE" || notify-send "Screenshot aborted"

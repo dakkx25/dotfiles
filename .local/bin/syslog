@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case "$(printf "%s\n" "  lock" "󰒲  sleep" "  reboot" "  shutdown" | dmenu -p 'Action: ')" in
+	"  lock") pidof hyprlock || hyprlock ;;
+	"󰒲  sleep") loginctl suspend && pidof hyprlock || hyprlock ;;
+	"  reboot") loginctl reboot ;;
+	"  shutdown") loginctl poweroff ;;
+	*) exit 1 ;;
+esac

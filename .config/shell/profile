@@ -1,0 +1,36 @@
+#!/bin/zsh
+
+# profile file. Runs on login. Environmental variables are set here.
+
+# Adds `~/.local/bin` to $PATH
+export PATH="$PATH:$HOME/.local/bin"
+unsetopt PROMPT_SP 2>/dev/null
+
+# Default programs:
+export EDITOR="nvim"
+export TERMINAL="foot"
+export BROWSER="librewolf"
+
+# ~/ Clean-up:
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export LESSHISTFILE="-"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+
+# Default env vars:
+export XCURSOR_PATH="$HOME/.local/share/icons"
+export XCURSOR_THEME="Bibata-Modern-Classic"
+export XCURSOR_SIZE=24
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORMTHEME="gtk2"
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_USE_XINPUT2=1
+
+# Start graphical server on user's current tty if not already running.
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Hyprland >/dev/null 2>&1 && exec dbus-run-session Hyprland

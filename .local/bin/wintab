@@ -1,0 +1,15 @@
+#!/bin/sh
+
+state="$(hyprctl -j clients)"
+active_window="$(hyprctl -j activewindow)"
+current_addr="$(echo "$active_window" | gojq -r '.address')"
+
+window="$(echo "$state" |
+    gojq -r '.[] | select(.monitor != -1 ) | "\(.address) [\(.workspace.name)] \(.title)"' |
+    sed "s|$current_addr|->|" |
+    sort -r |
+    dmenu -w 50)"
+
+addr="$(echo "$window" | awk '{print $1}')"
+
+hyprctl dispatch focuswindow address:"${addr}"

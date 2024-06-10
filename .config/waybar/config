@@ -1,0 +1,60 @@
+{
+    "layer": "top",
+    "position": "top", 
+    "height": 28,
+    "reload_style_on_change": true,
+
+    "modules-left": [ "hyprland/workspaces", "hyprland/window" ],
+    "modules-right": [ "network", "wireplumber", "battery", "clock#time", "tray" ],
+ 
+    "hyprland/window": {
+	"format": "{}",
+	"all-outputs": true,
+	"icon": true,
+	"icon-size": 16,
+	"on-click": "wintab"
+    },
+
+    "network": {
+	"interval": 60,
+	"format-wifi": "<span foreground='#a89984'>{icon} </span>{essid}",
+	"format-disconnected": "<span foreground='#a89984'>󰤭 </span>",
+	"format-ethernet": "<span foreground='#a89984'>󰛳  </span>Connected",
+	"on-click": "foot -e sh -c 'sleep 0.1 && nmtui'",
+	"format-icons": [ "󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 " ]
+    },
+
+    "wireplumber": {
+	"format": "<span foreground='#a89984'>{icon}  </span>{volume}%",
+	"format-muted": "<span foreground='#a89984'>󰝟  </span>{volume}%",
+	"on-click": "foot -e pulsemixer",
+	"format-icons": {
+	    "default": ["󰕿", "󰖀", "󰕾"]
+	}
+    },
+
+    "clock#time": {
+	"interval": 60,
+	"format": "{:%I:%M %p}",
+	"tooltip-format": "{calendar}",
+	"calendar": {
+	    "format": {
+		"days": "<span color='#a89984'><b>{}</b></span>",
+		"weekdays": "<span color='#a89984'>{}</span>",
+		"today": "<span color='#d5c4a1'>{}</span>"
+	    }
+	}
+    },
+
+  "battery": {
+	"interval": 30,
+	"format": "<span foreground='#a89984'>{icon} </span>{capacity}%",
+	"format-charging": "<span foreground='#a89984'>󰂄 </span>{capacity}%",
+	"format-icons": [ "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ]
+  },
+
+  "tray": {
+	"icon-size": 14,
+	"spacing": 10
+  }
+}
