@@ -17,7 +17,7 @@ alias \
 
 # Colorize commands when possible.
 alias \
-	ls="ls -hN --color=auto --group-directories-first" \
+	ls="ls -hAN --color=auto --group-directories-first" \
 	grep="grep --color=auto"
 	
 # These common commands are just too long! Abbreviate them.

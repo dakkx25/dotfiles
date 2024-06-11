@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-# profile file. Runs on login. Environmental variables are set here.
-
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$HOME/.local/bin"
 unsetopt PROMPT_SP 2>/dev/null
